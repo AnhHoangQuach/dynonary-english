@@ -86,7 +86,7 @@ exports.postLogin = async (req, res) => {
 
     // set cookie with jwt
     const token = await jwtConfig.encodedToken(
-      process.env.JWT_SECRET_KEY || 'dynonary-serect',
+      process.env.JWT_SECRET_KEY || 'rainbow-secret',
       { accountId: account._id },
     );
     res.cookie(KEYS.JWT_TOKEN, token, {
@@ -132,7 +132,7 @@ exports.postLoginSocialNetwork = async (req, res) => {
 
     // set cookie with jwt
     const token = await jwtConfig.encodedToken(
-      process.env.JWT_SECRET_KEY || 'dynonary-serect',
+      process.env.JWT_SECRET_KEY || 'rainbow-secret',
       { accountId },
     );
 
