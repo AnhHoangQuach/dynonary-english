@@ -3,8 +3,8 @@ const nodemailer = require('nodemailer');
 
 // configure option
 const option = {
-  host: 'smtp.gmail.com',
-  port: 587,
+  host: 'sandbox.smtp.mailtrap.io',
+  port: 2525,
   secure: false,
   auth: {
     user: process.env.NODE_MAILER_USER,
