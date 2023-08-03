@@ -45,7 +45,7 @@ const GAME_LIST = [
   /*  {
     title: 'Ai là triệu phú',
     subTitle:
-      'Trải nghiệm game show truyền hình "Ai là triệu phú" phiên bản tiếng Anh ngay với Hama',
+      'Trải nghiệm game show truyền hình "Ai là triệu phú" phiên bản tiếng Anh ngay với Rainbow - Ant',
     imgUrl: millionaireIcon,
     to: GAMES.MILLIONAIRE,
   },

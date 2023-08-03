@@ -24,9 +24,9 @@ const NAV_SEARCH_DATA = [
     to: ROUTES.FLASHCARD,
   },
   {
-    title: 'từ điển Hama',
+    title: 'từ điển Rainbow - Ant',
     searchKey:
-      'danh sách từ phân loại cấp độ vocabulary dictionary level type list hama',
+      'danh sách từ phân loại cấp độ vocabulary dictionary level type list Rainbow - Ant',
     to: ROUTES.DYNO_DICTIONARY,
   },
   {

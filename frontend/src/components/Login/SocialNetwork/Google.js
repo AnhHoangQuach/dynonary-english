@@ -60,7 +60,6 @@ function LoginGoogle() {
         </div>
       )}
       onSuccess={onLoginWithGoogle}
-      onFailure={onLoginWithGoogle}
       cookiePolicy={'single_host_origin'}
     />
   );

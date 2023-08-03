@@ -133,7 +133,7 @@ function WordContribution({ onSubmitForm, submitting }) {
               dispatch(
                 setMessage({
                   type: 'warning',
-                  message: `Từ ${word} (${type}) đã tồn tại trong Hama !`,
+                  message: `Từ ${word} (${type}) đã tồn tại trong Rainbow - Ant !`,
                   duration: 2000,
                 }),
               );
@@ -147,7 +147,7 @@ function WordContribution({ onSubmitForm, submitting }) {
 
   return (
     <div className={classes.root}>
-      <h1 className={classes.title}>Thêm từ mới của bạn vào Hama</h1>
+      <h1 className={classes.title}>Thêm từ mới của bạn vào Rainbow - Ant</h1>
       <div className="dyno-break"></div>
 
       <form onSubmit={handleSubmit(onSubmit)} autoComplete="off">

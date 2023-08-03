@@ -22,9 +22,12 @@ function Speaker(props) {
       {isWrap ? (
         <div onClick={handleClick}>{props.children}</div>
       ) : (
-        <SpeakerIcon
+        <img
+          src={require('assets/images/speaker-icon.png').default}
           className={`dyno-speaker ${className}`}
           onClick={handleClick}
+          height={32}
+          width={32}
         />
       )}
     </>
