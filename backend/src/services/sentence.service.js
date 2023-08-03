@@ -45,3 +45,38 @@ exports.getSentenceList = async (page = 1, perPage = 20, topics = []) => {
     throw error;
   }
 };
+
+exports.approveSentence = async (id) => {
+  try {
+    const isUpdated = await SentenceModel.updateOne(
+      { _id: new mongoose.Types.ObjectId(id) },
+      { isChecked: true },
+    );
+    if (isUpdated.n && isUpdated.ok) {
+      return { status: true, message: 'success' };
+    }
+    return false;
+  } catch (error) {
+    throw error;
+  }
+};
+
+exports.fetchSentences = async (
+  page = 1,
+  perPage = 20,
+  search = '',
+  isChecked,
+) => {
+  try {
+    const sentences = await SentenceModel.find({
+      sentence: { $regex: search, $options: 'i' },
+      ...(isChecked && { isChecked }),
+    })
+      .skip((page - 1) * perPage)
+      .limit(perPage);
+
+    return sentences;
+  } catch (error) {
+    throw error;
+  }
+};

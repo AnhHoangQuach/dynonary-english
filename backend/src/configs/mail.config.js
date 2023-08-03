@@ -94,7 +94,7 @@ const htmlWarningLogin = () => {
    ${headerHtmlMail}
     <h2 style="padding: 10px 0; margin-bottom: 10px;">
         Xin Chào anh (chị),<br />
-        Cửa hàng nghi ngờ có ai đó đã cố gắng đăng nhập vào tài khoản của quý khách.<br />
+        Trang web nghi ngờ có ai đó đã cố gắng đăng nhập vào tài khoản của quý khách.<br />
         Nếu quý khác không nhớ mật khẩu hãy nhấn vào "Quên mật khẩu" để lấy lại mật khẩu<br/>
     </h2>
     <h1>Cảm ơn.</h1>

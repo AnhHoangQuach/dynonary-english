@@ -57,3 +57,33 @@ exports.getFavoriteList = async (rawFavorites = []) => {
     throw error;
   }
 };
+
+exports.approveWord = async (id) => {
+  try {
+    const isUpdated = await WordModel.updateOne(
+      { _id: new mongoose.Types.ObjectId(id) },
+      { isChecked: true },
+    );
+    if (isUpdated.n && isUpdated.ok) {
+      return { status: true, message: 'success' };
+    }
+    return false;
+  } catch (error) {
+    throw error;
+  }
+};
+
+exports.fetchWords = async (page = 1, perPage = 20, search = '', isChecked) => {
+  try {
+    const words = await WordModel.find({
+      word: { $regex: search, $options: 'i' },
+      ...(isChecked && { isChecked }),
+    })
+      .skip((page - 1) * perPage)
+      .limit(perPage);
+
+    return words;
+  } catch (error) {
+    throw error;
+  }
+};

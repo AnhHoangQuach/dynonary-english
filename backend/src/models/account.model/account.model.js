@@ -35,6 +35,10 @@ const accountSchema = new Schema({
     required: true,
     default: new Date(),
   },
+  isActive: {
+    type: Boolean,
+    default: true,
+  },
 });
 
 // hash password with bcrypt

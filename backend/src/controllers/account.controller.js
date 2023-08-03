@@ -13,6 +13,8 @@ const {
   getProfile,
   updateAvt,
   updateProfile,
+  fetchUsers,
+  isActivateUser,
 } = require('../services/account.service');
 const {
   COOKIE_EXPIRES_TIME,
@@ -76,6 +78,12 @@ exports.postLogin = async (req, res) => {
     const account = await findAccount(email);
     if (!account) {
       return res.status(406).json({ message: 'Tài khoản không tồn tại' });
+    }
+
+    if (!account.isActive) {
+      return res
+        .status(406)
+        .json({ message: 'Tài khoản đang tạm khóa, vui lòng liên hệ admin' });
     }
 
     // check password
@@ -223,8 +231,6 @@ exports.putToggleFavorite = async (req, res) => {
     } else {
       return res.status(409).json({ message: 'failed' });
     }
-
-    console.log(updateStatus);
   } catch (error) {
     console.error('PUT TOGGLE FAVORITE ERROR: ', error);
     return res.status(503).json({ message: 'Lỗi dịch vụ, thử lại sau' });
@@ -353,6 +359,45 @@ exports.getUserProfile = async (req, res, next) => {
       .json({ email: userInfo.email, createdDate: userInfo.createdDate });
   } catch (error) {
     console.error('GET USER PROFILE ERROR: ', error);
+    return res.status(500).json({ message: 'Lỗi dịch vụ, thử lại sau' });
+  }
+};
+
+exports.fetchUsers = async (req, res, next) => {
+  try {
+    const { search, page, size } = req.query;
+    const users = await fetchUsers(page, size, search);
+    return res.status(200).json({ users });
+  } catch (error) {
+    console.error('GET USERS ERROR: ', error);
+    return res.status(500).json({ message: 'Lỗi dịch vụ, thử lại sau' });
+  }
+};
+
+exports.deactivateUser = async (req, res, next) => {
+  try {
+    const result = await isActivateUser(req.params.id, false);
+    if (!result.status) {
+      return res.status(400).json({ message: result.message });
+    }
+
+    return res.status(200).json({ message: 'success' });
+  } catch (error) {
+    console.error('DEACTIVATE USER ERROR: ', error);
+    return res.status(500).json({ message: 'Lỗi dịch vụ, thử lại sau' });
+  }
+};
+
+exports.activateUser = async (req, res, next) => {
+  try {
+    const result = await isActivateUser(req.params.id, true);
+    if (!result.status) {
+      return res.status(400).json({ message: result.message });
+    }
+
+    return res.status(200).json({ message: 'success' });
+  } catch (error) {
+    console.error('ACTIVATE USER ERROR: ', error);
     return res.status(500).json({ message: 'Lỗi dịch vụ, thử lại sau' });
   }
 };

@@ -57,3 +57,28 @@ exports.getSentenceList = async (req, res, next) => {
     return res.status(500).json({ message: 'Lỗi dịch vụ, thử lại sau' });
   }
 };
+
+exports.approveSentence = async (req, res, next) => {
+  try {
+    const result = await approveSentence(req.params.id);
+    if (!result.status) {
+      return res.status(400).json({ message: result.message });
+    }
+
+    return res.status(200).json({ message: 'success' });
+  } catch (error) {
+    console.error('APPROVE SENTENCE ERROR: ', error);
+    return res.status(500).json({ message: 'Lỗi dịch vụ, thử lại sau' });
+  }
+};
+
+exports.fetchSentences = async (req, res, next) => {
+  try {
+    const { search, page, size, isChecked } = req.query;
+    const sentences = await fetchSentences(page, size, search, isChecked);
+    return res.status(200).json({ sentences });
+  } catch (error) {
+    console.error('GET SENTENCES ERROR: ', error);
+    return res.status(500).json({ message: 'Lỗi dịch vụ, thử lại sau' });
+  }
+};

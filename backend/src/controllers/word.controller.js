@@ -8,6 +8,8 @@ const {
   searchWord,
   getWordDetail,
   getFavoriteList,
+  approveWord,
+  fetchWords,
 } = require('../services/word.service');
 
 exports.postContributeWord = async (req, res, next) => {
@@ -141,6 +143,45 @@ exports.getUserFavoriteList = async (req, res, next) => {
     return res.status(200).json({ packList });
   } catch (error) {
     console.error(' ERROR: ', error);
+    return res.status(500).json({ message: 'Lỗi dịch vụ, thử lại sau' });
+  }
+};
+
+exports.approveWord = async (req, res, next) => {
+  try {
+    const result = await approveWord(req.params.id);
+    if (!result.status) {
+      return res.status(400).json({ message: result.message });
+    }
+
+    return res.status(200).json({ message: 'success' });
+  } catch (error) {
+    console.error('APPROVE WORD ERROR: ', error);
+    return res.status(500).json({ message: 'Lỗi dịch vụ, thử lại sau' });
+  }
+};
+
+exports.approveWord = async (req, res, next) => {
+  try {
+    const result = await approveWord(req.params.id);
+    if (!result.status) {
+      return res.status(400).json({ message: result.message });
+    }
+
+    return res.status(200).json({ message: 'success' });
+  } catch (error) {
+    console.error('APPROVE WORD ERROR: ', error);
+    return res.status(500).json({ message: 'Lỗi dịch vụ, thử lại sau' });
+  }
+};
+
+exports.fetchWords = async (req, res, next) => {
+  try {
+    const { search, page, size, isChecked } = req.query;
+    const words = await fetchWords(page, size, search, isChecked);
+    return res.status(200).json({ words });
+  } catch (error) {
+    console.error('GET WORDS ERROR: ', error);
     return res.status(500).json({ message: 'Lỗi dịch vụ, thử lại sau' });
   }
 };

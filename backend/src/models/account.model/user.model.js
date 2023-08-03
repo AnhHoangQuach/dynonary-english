@@ -21,6 +21,11 @@ const userSchema = new Schema({
     max: MAX.USER_COIN,
   },
   favoriteList: [String],
+  role: {
+    type: String,
+    enum: ['ADMIN', 'USER'],
+    default: 'USER',
+  },
 });
 
 const UserModel = mongoose.model('user', userSchema, 'users');

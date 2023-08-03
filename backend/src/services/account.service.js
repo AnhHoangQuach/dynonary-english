@@ -3,6 +3,7 @@ const { hashPassword } = require('../helper');
 const AccountModel = require('../models/account.model/account.model');
 const UserModel = require('../models/account.model/user.model');
 const { uploadImage } = require('./common.service');
+const mongoose = require('mongoose');
 
 exports.isExistAccount = async (email) => {
   try {
@@ -187,6 +188,36 @@ exports.getProfile = async (accountId = '') => {
       'email createdDate',
     );
     return account;
+  } catch (error) {
+    throw error;
+  }
+};
+
+exports.fetchUsers = async (page = 1, perPage = 20, search = '') => {
+  try {
+    const users = await UserModel.find()
+      .select('name username avt coin role')
+      .populate('accountId', 'email createdDate')
+      .find({ username: { $regex: search, $options: 'i' }, role: 'USER' })
+      .skip((page - 1) * perPage)
+      .limit(perPage);
+
+    return users;
+  } catch (error) {
+    throw error;
+  }
+};
+
+exports.isActivateUser = async (id, isActive) => {
+  try {
+    const isUpdated = await AccountModel.updateOne(
+      { _id: new mongoose.Types.ObjectId(id) },
+      { isActive },
+    );
+    if (isUpdated.n && isUpdated.ok) {
+      return { status: true, message: 'success' };
+    }
+    return false;
   } catch (error) {
     throw error;
   }

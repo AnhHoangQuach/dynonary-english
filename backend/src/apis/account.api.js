@@ -2,6 +2,7 @@ const accountApi = require('express').Router();
 const accountController = require('../controllers/account.controller');
 const passport = require('passport');
 const passportConfig = require('../middlewares/passport.middleware');
+const roleMiddleware = require('../middlewares/role.middleware');
 
 accountApi.post('/register', accountController.postRegisterAccount);
 accountApi.post('/login', accountController.postLogin);
@@ -40,11 +41,31 @@ accountApi.get(
   passportConfig.jwtAuthentication,
   accountController.getUserInfo,
 );
+
 accountApi.get('/send-verify-code', accountController.getVerifyCode);
+
 accountApi.get(
   '/user-profile',
   passportConfig.jwtAuthentication,
   accountController.getUserProfile,
+);
+
+accountApi.get(
+  '/users-list',
+  roleMiddleware.hasRole(['ADMIN']),
+  accountController.fetchUsers,
+);
+
+accountApi.put(
+  '/:id/deactivate',
+  roleMiddleware.hasRole(['ADMIN']),
+  accountController.deactivateUser,
+);
+
+accountApi.put(
+  '/:id/activate',
+  roleMiddleware.hasRole(['ADMIN']),
+  accountController.activateUser,
 );
 
 module.exports = accountApi;
