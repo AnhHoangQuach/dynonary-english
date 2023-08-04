@@ -42,7 +42,7 @@ const GAME_LIST = [
     to: GAMES.CORRECT_WORD_ADV,
   }, */
 
-  /*  {
+  {
     title: 'Ai là triệu phú',
     subTitle:
       'Trải nghiệm game show truyền hình "Ai là triệu phú" phiên bản tiếng Anh ngay với Rainbow - Ant',
@@ -62,7 +62,7 @@ const GAME_LIST = [
       'Luyện tập ngữ pháp với câu trắc nghiệm điền vào chỗ trống sao cho phù hợp nhé.',
     imgUrl: grammarlyIcon,
     to: GAMES.GRAMMARLY,
-  }, */
+  },
   /*   {
     title: 'Game VIP',
     subTitle:
