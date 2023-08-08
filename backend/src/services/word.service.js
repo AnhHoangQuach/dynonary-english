@@ -81,7 +81,7 @@ exports.fetchWords = async (search = '') => {
     const words = await WordModel.find({
       word: { $regex: search, $options: 'i' },
       isChecked: false,
-    }).sort({ createdAt: -1 });
+    }).sort({ _id: -1 });
 
     return words;
   } catch (error) {

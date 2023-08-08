@@ -67,7 +67,7 @@ exports.fetchSentences = async (search = '') => {
     const sentences = await SentenceModel.find({
       sentence: { $regex: search, $options: 'i' },
       isChecked: false,
-    }).sort({ createdAt: -1 });
+    }).sort({ _id: -1 });
 
     return sentences;
   } catch (error) {
