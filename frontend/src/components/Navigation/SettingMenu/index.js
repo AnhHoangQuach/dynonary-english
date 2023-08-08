@@ -9,10 +9,13 @@ import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import useStyle from './style';
+import { useSelector } from 'react-redux';
 
 function SettingMenu({ anchorEl, onClose }) {
   const classes = useStyle();
   const [open, setOpen] = useState(false);
+
+  const { role } = useSelector((state) => state.userInfo);
 
   return (
     <Menu
@@ -37,6 +40,31 @@ function SettingMenu({ anchorEl, onClose }) {
         <SettingsIcon className={classes.icon} fontSize="small" />
         <p className={classes.text}>Cài đặt</p>
       </MenuItem>
+
+      {role === 'ADMIN' && (
+        <>
+          <Link to={ROUTES.MANAGE_USER}>
+            <MenuItem className={classes.menuItem}>
+              <AccountCircleIcon className={classes.icon} fontSize="small" />
+              <p className={classes.text}>Quản lý người dùng</p>
+            </MenuItem>
+          </Link>
+
+          <Link to={ROUTES.MANAGE_SENTENCE}>
+            <MenuItem className={classes.menuItem}>
+              <AccountCircleIcon className={classes.icon} fontSize="small" />
+              <p className={classes.text}>Quản lý mẫu câu</p>
+            </MenuItem>
+          </Link>
+
+          <Link to={ROUTES.MANAGE_WORD}>
+            <MenuItem className={classes.menuItem}>
+              <AccountCircleIcon className={classes.icon} fontSize="small" />
+              <p className={classes.text}>Quản lý từ vựng</p>
+            </MenuItem>
+          </Link>
+        </>
+      )}
 
       <Link to={ROUTES.LOGOUT}>
         <MenuItem className={classes.menuItem}>

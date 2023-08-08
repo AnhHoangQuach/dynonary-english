@@ -33,6 +33,14 @@ const wordApi = {
       params: { page, perPage, sortType },
     });
   },
+
+  fetchWords: () => {
+    return axiosClient.get(`${URL}/words-list`);
+  },
+
+  approveWord: (id) => {
+    return axiosClient.put(`${URL}/approve-word`, { id });
+  },
 };
 
 export default wordApi;

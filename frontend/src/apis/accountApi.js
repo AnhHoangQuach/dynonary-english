@@ -60,6 +60,18 @@ const accountApi = {
   getUserProfile: () => {
     return axiosClient.get(`${URL}/user-profile`);
   },
+
+  fetchUsers: () => {
+    return axiosClient.get(`${URL}/users-list`);
+  },
+
+  activeUser: (id) => {
+    return axiosClient.put(`${URL}/activate`, { id });
+  },
+
+  deactivateUser: (id) => {
+    return axiosClient.put(`${URL}/deactivate`, { id });
+  }
 };
 
 export default accountApi;

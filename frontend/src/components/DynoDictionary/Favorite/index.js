@@ -23,7 +23,7 @@ function FavoriteDictionary({
     <div className={`${classes.root} dyno-container`}>
       {/* title - menu */}
       <div className="flex-center-between">
-        <h1 className="dyno-title">Từ điển của bạn</h1>
+        <h1 className="dyno-title">Từ vựng yêu thích</h1>
         <div>
           <WordSortModal
             onSelect={onSortTypeChange}

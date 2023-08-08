@@ -51,6 +51,8 @@ function Navigation() {
               <ArrowBackIosIcon
                 className={`${classes.iconSize} mr-4 cur-pointer`}
                 onClick={() => setShowInput(!showInput)}
+                true
+                false
               />
             )}
 

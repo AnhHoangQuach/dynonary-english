@@ -25,6 +25,7 @@ const userInfoSlice = createSlice({
     avt: '',
     favoriteList: [],
     coin: 0,
+    role: '',
   },
   reducers: {
     setAddFavorites(state, action) {
@@ -47,12 +48,12 @@ const userInfoSlice = createSlice({
   },
   extraReducers: {
     [getUserInfo.fulfilled]: (state, action) => {
-      const { username, name, avt, coin, favoriteList } = action.payload;
+      const { username, name, avt, coin, favoriteList, role } = action.payload;
       if (!username || username === '') {
         state.isAuth = false;
         return;
       }
-      return { isAuth: true, username, name, avt, coin, favoriteList };
+      return { isAuth: true, username, name, avt, coin, favoriteList, role };
     },
   },
 });

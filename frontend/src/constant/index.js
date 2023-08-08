@@ -63,6 +63,9 @@ export const ROUTES = {
   FAVORITE: '/favorite-vocab',
   IRREGULAR: '/irregular-verbs',
   USER_ACCOUNT: '/profile',
+  MANAGE_USER: '/manage-user',
+  MANAGE_WORD: '/manage-word',
+  MANAGE_SENTENCE: '/manage-sentence',
   LEADERBOARD: '/leaderboard',
   GAMES: {
     HOME: '/games',

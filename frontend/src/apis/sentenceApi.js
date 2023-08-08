@@ -27,6 +27,14 @@ const sentenceApi = {
       },
     });
   },
+
+  fetchSentences: () => {
+    return axiosClient.get(`${URL}/sentences-list`);
+  },
+
+  approveSentence: (id) => {
+    return axiosClient.put(`${URL}/approve-sentence`, { id });
+  },
 };
 
 export default sentenceApi;

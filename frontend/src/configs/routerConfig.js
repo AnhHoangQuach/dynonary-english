@@ -25,6 +25,12 @@ const ForgotPasswordPage = React.lazy(() => import('pages/ForgotPassword'));
 const UserAccountPage = React.lazy(() => import('pages/UserAccount'));
 const LeaderBoardPage = React.lazy(() => import('pages/LeaderBoard'));
 
+const ManageUserPage = React.lazy(() => import('pages/Admin/ManageUser'));
+const ManageWordPage = React.lazy(() => import('pages/Admin/ManageWord'));
+const ManageSentencePage = React.lazy(() =>
+  import('pages/Admin/ManageSentence'),
+);
+
 // routes for app
 const routes = [
   {
@@ -134,6 +140,24 @@ const routes = [
     exact: false,
     isProtect: true,
     component: () => <UserAccountPage />,
+  },
+  {
+    path: ROUTES.MANAGE_USER,
+    exact: false,
+    isProtect: true,
+    component: () => <ManageUserPage />,
+  },
+  {
+    path: ROUTES.MANAGE_SENTENCE,
+    exact: false,
+    isProtect: true,
+    component: () => <ManageSentencePage />,
+  },
+  {
+    path: ROUTES.MANAGE_WORD,
+    exact: false,
+    isProtect: true,
+    component: () => <ManageWordPage />,
   },
   {
     path: ROUTES.LEADERBOARD,
