@@ -79,7 +79,7 @@ const wordSchema = new Schema({
 
   isChecked: {
     type: Boolean,
-    default: false,
+    default: true,
   },
 });
 

@@ -27,7 +27,7 @@ const sentenceSchema = new Schema({
   isChecked: {
     type: Boolean,
     required: true,
-    default: false,
+    default: true,
   },
 });
 
