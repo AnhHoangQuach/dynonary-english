@@ -376,7 +376,7 @@ exports.fetchUsers = async (req, res, next) => {
 
 exports.deactivateUser = async (req, res, next) => {
   try {
-    const result = await isActivateUser(req.params.id, false);
+    const result = await isActivateUser(req.body.id, false);
     if (!result.status) {
       return res.status(400).json({ message: result.message });
     }
@@ -390,7 +390,7 @@ exports.deactivateUser = async (req, res, next) => {
 
 exports.activateUser = async (req, res, next) => {
   try {
-    const result = await isActivateUser(req.params.id, true);
+    const result = await isActivateUser(req.body.id, true);
     if (!result.status) {
       return res.status(400).json({ message: result.message });
     }

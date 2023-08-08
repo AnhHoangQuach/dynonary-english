@@ -15,7 +15,7 @@ wordApi.get(
   wordController.getUserFavoriteList,
 );
 wordApi.put(
-  '/:id',
+  '/approve-word',
   roleMiddleware.hasRole(['ADMIN']),
   wordController.approveWord,
 );

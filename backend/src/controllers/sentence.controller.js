@@ -3,6 +3,8 @@ const {
   createSentence,
   getTotalSentences: getTotalSentencesService,
   getSentenceList: getSentenceListService,
+  fetchSentences,
+  approveSentence,
 } = require('../services/sentence.service');
 
 exports.postContributeSentence = async (req, res, next) => {
@@ -60,7 +62,7 @@ exports.getSentenceList = async (req, res, next) => {
 
 exports.approveSentence = async (req, res, next) => {
   try {
-    const result = await approveSentence(req.params.id);
+    const result = await approveSentence(req.body.id);
     if (!result.status) {
       return res.status(400).json({ message: result.message });
     }
@@ -74,8 +76,8 @@ exports.approveSentence = async (req, res, next) => {
 
 exports.fetchSentences = async (req, res, next) => {
   try {
-    const { search, page, size, isChecked } = req.query;
-    const sentences = await fetchSentences(page, size, search, isChecked);
+    const { search, page, size } = req.query;
+    const sentences = await fetchSentences(page, size, search);
     return res.status(200).json({ sentences });
   } catch (error) {
     console.error('GET SENTENCES ERROR: ', error);

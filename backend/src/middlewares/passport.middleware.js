@@ -23,7 +23,7 @@ exports.jwtAuthentication = async (req, res, next) => {
     if (decoded) {
       const { accountId } = decoded.sub;
       let user = await UserModel.findOne({ accountId }).select(
-        '-_id username name avt favoriteList coin',
+        '-_id username name avt favoriteList coin role',
       );
 
       if (user) {

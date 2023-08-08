@@ -1,4 +1,5 @@
 const WordModel = require('../models/word.model');
+const mongoose = require('mongoose');
 
 exports.createNewWord = async (wordInfo) => {
   try {
@@ -62,7 +63,9 @@ exports.approveWord = async (id) => {
   try {
     const isUpdated = await WordModel.updateOne(
       { _id: new mongoose.Types.ObjectId(id) },
-      { isChecked: true },
+      {
+        isChecked: true,
+      },
     );
     if (isUpdated.n && isUpdated.ok) {
       return { status: true, message: 'success' };
@@ -73,11 +76,11 @@ exports.approveWord = async (id) => {
   }
 };
 
-exports.fetchWords = async (page = 1, perPage = 20, search = '', isChecked) => {
+exports.fetchWords = async (page = 1, perPage = 20, search = '') => {
   try {
     const words = await WordModel.find({
       word: { $regex: search, $options: 'i' },
-      ...(isChecked && { isChecked }),
+      isChecked: false,
     })
       .skip((page - 1) * perPage)
       .limit(perPage);

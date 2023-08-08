@@ -12,7 +12,7 @@ sentenceApi.get('/total', sentenceController.getTotalSentences);
 sentenceApi.get('/list', sentenceController.getSentenceList);
 
 sentenceApi.put(
-  '/:id',
+  '/approve-sentence',
   roleMiddleware.hasRole(['ADMIN']),
   sentenceController.approveSentence,
 );

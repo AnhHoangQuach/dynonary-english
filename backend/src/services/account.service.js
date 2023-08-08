@@ -197,7 +197,7 @@ exports.fetchUsers = async (page = 1, perPage = 20, search = '') => {
   try {
     const users = await UserModel.find()
       .select('name username avt coin role')
-      .populate('accountId', 'email createdDate')
+      .populate('accountId', 'email createdDate isActive')
       .find({ username: { $regex: search, $options: 'i' }, role: 'USER' })
       .skip((page - 1) * perPage)
       .limit(perPage);
@@ -214,6 +214,7 @@ exports.isActivateUser = async (id, isActive) => {
       { _id: new mongoose.Types.ObjectId(id) },
       { isActive },
     );
+
     if (isUpdated.n && isUpdated.ok) {
       return { status: true, message: 'success' };
     }

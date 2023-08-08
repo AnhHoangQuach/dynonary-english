@@ -1,5 +1,6 @@
 const { addTopicsQuery } = require('../helper/word-pack.helper');
 const SentenceModel = require('../models/sentence.model');
+const mongoose = require('mongoose');
 
 exports.createSentence = async (sentence, mean, note, topics) => {
   try {
@@ -61,16 +62,11 @@ exports.approveSentence = async (id) => {
   }
 };
 
-exports.fetchSentences = async (
-  page = 1,
-  perPage = 20,
-  search = '',
-  isChecked,
-) => {
+exports.fetchSentences = async (page = 1, perPage = 20, search = '') => {
   try {
     const sentences = await SentenceModel.find({
       sentence: { $regex: search, $options: 'i' },
-      ...(isChecked && { isChecked }),
+      isChecked: false,
     })
       .skip((page - 1) * perPage)
       .limit(perPage);

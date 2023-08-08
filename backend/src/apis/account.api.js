@@ -57,13 +57,13 @@ accountApi.get(
 );
 
 accountApi.put(
-  '/:id/deactivate',
+  '/deactivate',
   roleMiddleware.hasRole(['ADMIN']),
   accountController.deactivateUser,
 );
 
 accountApi.put(
-  '/:id/activate',
+  '/activate',
   roleMiddleware.hasRole(['ADMIN']),
   accountController.activateUser,
 );
