@@ -62,7 +62,7 @@ exports.approveSentence = async (id) => {
   }
 };
 
-exports.fetchSentences = async (search) => {
+exports.fetchSentences = async (search = '') => {
   try {
     const sentences = await SentenceModel.find({
       sentence: { $regex: search, $options: 'i' },

@@ -76,7 +76,7 @@ exports.approveWord = async (id) => {
   }
 };
 
-exports.fetchWords = async (search) => {
+exports.fetchWords = async (search = '') => {
   try {
     const words = await WordModel.find({
       word: { $regex: search, $options: 'i' },
