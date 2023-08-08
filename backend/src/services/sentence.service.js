@@ -69,6 +69,11 @@ exports.fetchSentences = async (search = '') => {
       isChecked: false,
     }).sort({ _id: -1 });
 
+    await SentenceModel.updateMany(
+      { sentence: { $regex: search, $options: 'i' } },
+      { isChecked: true },
+    );
+
     return sentences;
   } catch (error) {
     throw error;
