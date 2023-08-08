@@ -76,14 +76,12 @@ exports.approveWord = async (id) => {
   }
 };
 
-exports.fetchWords = async (page = 1, perPage = 20, search = '') => {
+exports.fetchWords = async () => {
   try {
     const words = await WordModel.find({
       word: { $regex: search, $options: 'i' },
       isChecked: false,
-    })
-      .skip((page - 1) * perPage)
-      .limit(perPage);
+    }).sort({ createdAt: -1 });
 
     return words;
   } catch (error) {

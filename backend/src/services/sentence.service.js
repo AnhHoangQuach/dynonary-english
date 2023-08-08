@@ -62,14 +62,12 @@ exports.approveSentence = async (id) => {
   }
 };
 
-exports.fetchSentences = async (page = 1, perPage = 20, search = '') => {
+exports.fetchSentences = async () => {
   try {
     const sentences = await SentenceModel.find({
       sentence: { $regex: search, $options: 'i' },
       isChecked: false,
-    })
-      .skip((page - 1) * perPage)
-      .limit(perPage);
+    }).sort({ createdAt: -1 });
 
     return sentences;
   } catch (error) {
