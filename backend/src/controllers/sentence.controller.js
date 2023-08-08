@@ -76,8 +76,8 @@ exports.approveSentence = async (req, res, next) => {
 
 exports.fetchSentences = async (req, res, next) => {
   try {
-    const { search, page, size } = req.query;
-    const sentences = await fetchSentences(page, size, search);
+    const { search } = req.query;
+    const sentences = await fetchSentences(search);
     return res.status(200).json({ sentences });
   } catch (error) {
     console.error('GET SENTENCES ERROR: ', error);

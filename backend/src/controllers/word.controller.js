@@ -163,8 +163,8 @@ exports.approveWord = async (req, res, next) => {
 
 exports.fetchWords = async (req, res, next) => {
   try {
-    const { search, page, size } = req.query;
-    const words = await fetchWords(page, size, search);
+    const { search } = req.query;
+    const words = await fetchWords(search);
     return res.status(200).json({ words });
   } catch (error) {
     console.error('GET WORDS ERROR: ', error);
