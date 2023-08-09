@@ -22,7 +22,7 @@ const sendEmail = async ({ to, subject, text, html, ...rest }) => {
       //config mail
       const mail = {
         //sender access
-        from: '"hama" <no-reply@accounts.hama.herokuapp.com>',
+        from: '"rain-bow" <no-reply@accounts.rain-bow.herokuapp.com>',
         //receiver access
         to,
         //subject
@@ -47,7 +47,7 @@ const sendEmail = async ({ to, subject, text, html, ...rest }) => {
 };
 
 const headerHtmlMail = `<h1 style="color: #018c4c; font-size: 48px; border-bottom: solid 2px #ccc;padding-bottom: 10px">
-      Hama - Learn English<br />
+      Rainbow Ant - Learn English<br />
     </h1>`;
 const footerHtmlVerifyMail = `<h3 style="color: red">
         Chú ý: Không đưa mã này cho bất kỳ ai,
@@ -62,7 +62,7 @@ const htmlSignupAccount = (token) => {
     ${headerHtmlMail}
     <h2 style="padding: 10px 0; margin-bottom: 10px;">
         Xin chào anh (chị),<br />
-        Mã xác nhận đăng ký tài khoản cho website Hama của bạn.<br />
+        Mã xác nhận đăng ký tài khoản cho website Rainbow Ant của bạn.<br />
         Cảm ơn vì đã ghé thăm TTB Store <3
     </h2>
     <h3 style="background: #eee;padding: 10px;">
@@ -78,7 +78,7 @@ const htmlResetPassword = (token) => {
     ${headerHtmlMail}
     <h2 style="padding: 10px 0; margin-bottom: 10px;">
         Xin chào anh (chị),<br />
-        Hama đã nhận được yêu cầu lấy lại mật khẩu từ bạn.<br />
+        Rainbow Ant đã nhận được yêu cầu lấy lại mật khẩu từ bạn.<br />
         Đừng lo lắng, hãy nhập mã này để khôi phục:
     </h2>
     <h1 style="background: #eee;padding: 10px;">

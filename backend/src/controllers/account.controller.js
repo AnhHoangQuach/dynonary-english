@@ -326,7 +326,7 @@ exports.getVerifyCode = async (req, res) => {
 
     const mail = {
       to: email,
-      subject: 'Hama - Mã xác nhận đổi mật khẩu',
+      subject: 'Rainbow Ant - Mã xác nhận đổi mật khẩu',
       html: mailConfig.htmlResetPassword(verifyCode),
     };
 
