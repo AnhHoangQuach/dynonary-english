@@ -149,6 +149,8 @@ exports.postLoginSocialNetwork = async (req, res) => {
       expires: new Date(Date.now() + COOKIE_EXPIRES_TIME),
     });
 
+    res.setHeader('Set-Cookie', [token]);
+
     return res.status(200).json({
       message: 'success',
       key: KEYS.JWT_TOKEN,
