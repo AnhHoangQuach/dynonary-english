@@ -147,8 +147,6 @@ exports.postLoginSocialNetwork = async (req, res) => {
     res.cookie(KEYS.JWT_TOKEN, token, {
       httpOnly: true,
       secure: true,
-      sameSite: 'none',
-      domain: 'vercel.app',
       expires: new Date(Date.now() + COOKIE_EXPIRES_TIME),
     });
 
