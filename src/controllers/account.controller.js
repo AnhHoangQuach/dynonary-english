@@ -146,6 +146,7 @@ exports.postLoginSocialNetwork = async (req, res) => {
 
     res.cookie(KEYS.JWT_TOKEN, token, {
       httpOnly: true,
+      domain: 'https://dynonary-english.vercel.app',
       expires: new Date(Date.now() + COOKIE_EXPIRES_TIME),
     });
 
